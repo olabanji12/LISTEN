@@ -18,26 +18,26 @@
           </ul>
         </div>
         <div>
-      <ul class="navbar-nav">
-        {% if user.is_authenticated %}
-        <!-- # Check if the user has a Spotify token in the session # -->
-          {% if user.spotify_token %} 
-            <span class="navbar-text">Logged in via Spotify as {{ user.username }} | </span>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/spotify_auth/spotify_login">Login via Spotify</a>
-            </li>
-          {% endif %}
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-        {% endif %}
-      </ul>
-    </div>
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <!-- # Check if the user has a Spotify token in the session # -->
+              {% if user.spotify_token %} 
+                <span class="navbar-text">Logged in via Spotify as {{ user.username }} | </span>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/spotify_auth/spotify_login">Login via Spotify</a>
+                </li>
+              {% endif %}
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
     </nav>
     <div class="container">
