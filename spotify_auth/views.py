@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings
 from requests import Request, post
+from django.contrib.auth import logout
+from .utils import update_or_create_user_tokens, is_spotify_authenticated
 
 def spotify_login(request):
     # Define your Spotify client credentials
@@ -18,14 +20,18 @@ def spotify_login(request):
 
     # Get the authorization URL with the scope
     auth_url = sp_oauth.get_authorize_url()
-    
+    # authenticated  = is_spotify_authenticated(request.session.session_key)
     return redirect(auth_url)
 
+def spotify_logout(request):
+    logout(request)  # Logs out the user
+    return redirect('home')
+  
 def spotify_callback(request):
     code = request.GET.get('code')
     error = request.GET.get('error')
 
-    # This request the acess token requied to interact with the api
+    # This request the access token requied to interact with the api
     response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'authorization_code',
         'code': code,
@@ -39,15 +45,13 @@ def spotify_callback(request):
     refresh_token = response.get('refresh_token')
     expires_in = response.get('expires_in')
     error = response.get('error')
-    print("Access Token:", token_type)
+    if not request.session.exists(request.session.session_key):
+        request.session.create()
     
-    # sp_oauth = SpotifyOAuth(request)
-    # code = request.GET.get('code')
-    # token_info = sp_oauth.get_access_token(code)
-
-    # # Store the Spotify access token in the user session or database
-    # request.session['spotify_token'] = token_info
-
+    update_or_create_user_tokens(
+        request.session.session_key, access_token, token_type, expires_in, refresh_token)
+    is_authenticated  = is_spotify_authenticated(request.session.session_key)
+    print(is_authenticated)
     # Redirect the user to another page or perform further actions
-    return render(request, 'spotify_auth/callback_success.html')
+    return render(request, 'Dashboard/dashboard.html')
 # '/spotify_callback.html'

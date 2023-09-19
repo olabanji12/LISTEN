@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from spotipy.oauth2 import SpotifyOAuth
-
+from spotify_auth.utils import is_spotify_authenticated
 
 # Create your views here.
 def home(request):
-    return render(request, 'User/home.html')
+    is_authenticated  = is_spotify_authenticated(request.session.session_key)
+    print(is_authenticated)
+    return render(request, 'User/home.html', {'is_authenticated': is_authenticated})
 
 # def login_user(request):
 #         if request.method == "POST":
