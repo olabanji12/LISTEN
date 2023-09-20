@@ -24,6 +24,6 @@ urlpatterns = [
     path("", include('User.urls')),
     path('spotify_auth/', include('spotify_auth.urls')),
     path('spotify/', include('spotify_auth.urls')),
-    
+    path('dashboard/', include('Dashboard.urls')),
     
 ]

@@ -50,8 +50,9 @@ def spotify_callback(request):
     
     update_or_create_user_tokens(
         request.session.session_key, access_token, token_type, expires_in, refresh_token)
+    
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
     print(is_authenticated)
     # Redirect the user to another page or perform further actions
-    return render(request, 'Dashboard/dashboard.html')
+    return redirect('user_dashboard')
 # '/spotify_callback.html'
