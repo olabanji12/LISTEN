@@ -13,7 +13,7 @@ def spotify_login(request):
     redirect_uri = settings.SPOTIPY_REDIRECT_URI
 
     # Define the desired Spotify scopes as a space-separated string
-    scope = 'user-read-private user-read-email playlist-modify-public'
+    scope = 'user-read-private user-read-email playlist-modify-public user-top-read'
 
     # Create the SpotifyOAuth object with credentials and scope
     sp_oauth = SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope)
@@ -23,7 +23,7 @@ def spotify_login(request):
     # authenticated  = is_spotify_authenticated(request.session.session_key)
     return redirect(auth_url)
 
-def spotify_logout(request):
+def spotify_logout(request): 
     logout(request)  # Logs out the user
     return redirect('home')
   
