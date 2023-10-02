@@ -1,11 +1,13 @@
 import spotipy
 from django.shortcuts import render
 from spotify_auth.utils import is_spotify_authenticated, get_user_tokens
-
+from User.views import home
+from spotify_auth.views import get_user_display_name
 # Create your views here.
 def user_dashboard(request):
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
-    print(is_authenticated)
+    user_display_name = get_user_display_name(request)
+   
     user_tokens = get_user_tokens(request.session.session_key)
     
     sp =spotipy.Spotify(user_tokens.access_token)
@@ -33,12 +35,9 @@ def user_dashboard(request):
     artist_names_and_images = zip(artist_names,artist_image_links)
     tracks_names_and_images = zip(track_names,tracks_image_links)
     context = {
-        'artist_names': artist_names,
-        'track_names': track_names,
         'is_authenticated': is_authenticated,
-        'artist_image_links': artist_image_links,
-        'tracks_image_links': tracks_image_links,
         'artist_names_and_images':artist_names_and_images,
         'tracks_names_and_images':tracks_names_and_images,
+        'user_display_name': user_display_name,
     }
     return render(request,"Dashboard/dashboard.html", context)

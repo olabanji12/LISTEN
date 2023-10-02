@@ -20,7 +20,7 @@
         <div>
           <ul class="navbar-nav ms-auto">
             {% if is_authenticated %} 
-                <span class="navbar-text">Logged in</span>
+                <span class="navbar-text">{{user_display_name}}</span>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'spotify_logout' %}">Logout</a>
                 </li>

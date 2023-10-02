@@ -2,9 +2,12 @@
 from django.shortcuts import redirect, render
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings
-from requests import Request, post
+from requests import request, post
 from django.contrib.auth import logout
-from .utils import update_or_create_user_tokens, is_spotify_authenticated
+from .utils import update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens
+import spotipy
+from django.http import HttpRequest
+
 
 def spotify_login(request):
     # Define your Spotify client credentials
@@ -22,6 +25,14 @@ def spotify_login(request):
     auth_url = sp_oauth.get_authorize_url()
     # authenticated  = is_spotify_authenticated(request.session.session_key)
     return redirect(auth_url)
+
+def get_user_display_name(request):
+    user_tokens = get_user_tokens(request.session.session_key)
+    sp = spotipy.Spotify(user_tokens.access_token)
+    user_info = sp.current_user()
+    user_display_name = user_info["display_name"]
+
+    return user_display_name
 
 def spotify_logout(request): 
     logout(request)  # Logs out the user
@@ -52,7 +63,6 @@ def spotify_callback(request):
         request.session.session_key, access_token, token_type, expires_in, refresh_token)
     
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
-    print(is_authenticated)
     # Redirect the user to another page or perform further actions
     return redirect('user_dashboard')
-# '/spotify_callback.html'
+
