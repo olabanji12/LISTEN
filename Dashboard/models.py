@@ -11,7 +11,7 @@ class UserTopArtists(models.Model):
     artist = models.CharField(max_length=255)
     rank = models.PositiveIntegerField()
 
-class UserTopAlbums(models.Model):
+class UserTopTracks(models.Model):
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, to_field = 'user_id')
-    album = models.CharField(max_length=255)
+    track = models.CharField(max_length=255)
     rank = models.PositiveIntegerField()
