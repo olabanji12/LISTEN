@@ -9,9 +9,11 @@ class UserProfile(models.Model):
 class UserTopArtists(models.Model):
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, to_field = 'user_id')
     artist = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, null=True)
     rank = models.PositiveIntegerField()
 
 class UserTopTracks(models.Model):
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, to_field = 'user_id')
     track = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, null=True)
     rank = models.PositiveIntegerField()
