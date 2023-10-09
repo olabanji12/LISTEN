@@ -6,7 +6,7 @@ from requests import request, post
 from django.contrib.auth import logout
 from .utils import update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens
 import spotipy
-from django.http import HttpRequest
+from Dashboard.models import *
 
 
 def spotify_login(request):
@@ -28,11 +28,49 @@ def spotify_login(request):
 
 def get_user_display_name(request):
     user_tokens = get_user_tokens(request.session.session_key)
-    sp = spotipy.Spotify(user_tokens.access_token)
+    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=10, retries=10)
     user_info = sp.current_user()
     user_display_name = user_info["display_name"]
 
     return user_display_name
+
+def get_user_display_id(request):
+    user_tokens = get_user_tokens(request.session.session_key)
+    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=10, retries=10)
+    user_info = sp.current_user()
+    user_id = user_info["id"]
+
+    return user_id
+
+def get_user_dashboard_data(request):
+    user_tokens = get_user_tokens(request.session.session_key)
+    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=10, retries=10)
+
+    # get user_id
+    
+    user_id = get_user_display_id(request)
+
+    # inserting user_id into UserProfile model
+    UserProfileInstance = UserProfile(user_id = user_id)
+    UserProfileInstance.save()
+
+    # get user top 50 artist and album and image for artists and album
+    top_artists = sp.current_user_top_artists(limit=50)
+    top_tracks = sp.current_user_top_tracks(limit=50)
+    artists_data = top_artists['items']
+    tracks_data = top_tracks['items']
+    
+    # inserting user top 50 list in the model
+    for counter, (artist, track) in enumerate(zip(artists_data,tracks_data), start=1):
+        artist_name = artist['name']
+        artist_image = artist['images'][1]['url']
+        track_name = track['name']
+        track_image = track['album']['images'][1]['url']
+        UserTopArtistsInstance = UserTopArtists(user_id = UserProfileInstance, artist = artist_name, image = artist_image, rank = counter)
+        UserTopArtistsInstance.save()
+        UserTopTracksInstance = UserTopTracks(user_id = UserProfileInstance, track = track_name, image = track_image, rank = counter)
+        UserTopTracksInstance.save()
+
 
 def spotify_logout(request): 
     logout(request)  # Logs out the user
@@ -63,6 +101,11 @@ def spotify_callback(request):
         request.session.session_key, access_token, token_type, expires_in, refresh_token)
     
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
+    if UserProfile.objects.filter(user_id = get_user_display_id).exists:
+        return redirect('user_dashboard')
+    else:
+        get_user_dashboard_data(request)
+        return redirect('user_dashboard')
     # Redirect the user to another page or perform further actions
-    return redirect('user_dashboard')
+    # return redirect('user_dashboard')
 
