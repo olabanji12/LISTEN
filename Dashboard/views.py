@@ -7,7 +7,7 @@ from .forms import FilterNumberSelection
 from .models import UserTopArtists, UserTopTracks, UserProfile
 # Create your views here.
 def user_dashboard(request):
-    form = FilterNumberSelection(request.GET)
+    form = FilterNumberSelection(request.GET or None)
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
     user_display_name = get_user_display_name(request)
     user_id = get_user_display_id(request)
