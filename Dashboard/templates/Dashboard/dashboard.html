@@ -1,0 +1,57 @@
+{% extends 'User/base.html' %} 
+{% block title %}Home Page{% endblock %} 
+{% block content%}
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 artist-container">
+            <form method="get">
+            {% csrf_token %}
+            {{ form }}
+                <button type="submit" class="btn btn-success">Filter</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="row items">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 artist-container">
+            <h1>ARTIST</h1>
+            <ol class="list">
+                {% for artist_name, img in artist_names_and_images %}
+                    <li class="list-group-item">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{img}}" class="card-img-top" style="height: 288px;">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{ forloop.counter }}. {{ artist_name|slice:":20" }}
+                                        {% if artist_name|length > 20 %}...{% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 track-container">
+            <h1>TRACKS</h1>
+            <ol class="list">
+               {% for track_name, img in tracks_names_and_images %}
+                    <li class="list-group-item">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{img}}" class="card-img-top" style="height: 288px;">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{ forloop.counter }}. {{ track_name|slice:":20" }}
+                                        {% if track_name|length > 20 %}...{% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
