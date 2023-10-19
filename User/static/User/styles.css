@@ -1,3 +1,20 @@
 body {
-    background-color: lightblue;
+    background-color: whitesmoke;
 }
+.navbar-custom {
+    background-color: #006D5B;
+}
+.container a{
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    color: #006D5B;
+    margin-left: 50px;
+}
+.container span{
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    color: #006D5B;
+    margin-left: 50px;
+}
+
+
