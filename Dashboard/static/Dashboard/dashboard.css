@@ -1,0 +1,27 @@
+/* .list {
+    border: 2px solid red;
+
+} */
+
+.list-group-item {
+    margin-bottom: 50px; /* Adjust this value as needed */
+    margin-left: 120px;
+
+}
+.items{
+    border: 2px solid #db1414;
+    background-color: #1E1E1E;
+
+}
+
+h1{
+    font-family: 'Inter', sans-serif;
+    font-size: 70px;
+    color: #006D5B;
+    text-align: center;
+}
+.sticky-form {
+  position: sticky;
+  top: 0px; /* Adjust this value to avoid overlap with the navbar */
+   z-index: 1000; 
+}
