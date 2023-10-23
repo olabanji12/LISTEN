@@ -1,0 +1,76 @@
+.landing-page {
+    width: 1280px; 
+    height: 832px; 
+    position: relative; 
+    background: #1E1E1E; 
+    border-radius: 50px; 
+    overflow: hidden;
+}
+.listen-title{
+    width: 373px; 
+    height: 124px; 
+    left: 455px; 
+    top: 53px; 
+    position: absolute; 
+    text-align: center; 
+    color: white; 
+    font-size: 96px; 
+    font-family: Outfit; 
+    font-weight: 800; 
+    word-wrap: break-word;
+}
+.catchphrase-description{
+    left: 52px; 
+    top: 226px; 
+    position: absolute; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 100px; 
+    display: inline-flex;
+}
+.Catchphrase{
+    width: 528px; 
+    height: 328px; 
+    position: relative
+}
+.catchphrase-fill{
+    width: 528px; 
+    height: 328px; 
+    left: 0px; 
+    top: 0px; 
+    position: absolute; 
+    opacity: 0.40; 
+    background: #006D5B; 
+    border-radius: 50px;
+}
+.catchphrase-text{
+    width: 438px; 
+    height: 168px; 
+    left: 31px; 
+    top: 82px; 
+    position: absolute; 
+    color: white; 
+    font-size: 64px; 
+    font-family: Inter; 
+    font-weight: 400; 
+    text-transform: capitalize; 
+    word-wrap: break-word;
+}
+.description-text{
+    width: 560px; 
+    height: 320px;
+}
+.description-text-listen{
+    color: #036354; 
+    font-size: 30px; 
+    font-family: Inter; 
+    font-weight: 800; 
+    word-wrap: break-word;
+}
+.description-text-block{
+    color: white; 
+    font-size: 30px; 
+    font-family: Inter; 
+    font-weight: 300; 
+    word-wrap: break-word;
+}
