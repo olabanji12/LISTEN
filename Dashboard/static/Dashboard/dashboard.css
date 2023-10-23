@@ -9,8 +9,9 @@
 
 }
 .items{
-    border: 2px solid #006D5B;
+    border: 5px solid #006D5B;
     background-color: #1E1E1E;
+    border-radius: 15px;
 
 }
 
