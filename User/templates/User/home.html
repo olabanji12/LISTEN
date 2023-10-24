@@ -1,18 +1,23 @@
 {% extends 'User/base.html' %} 
 {% block title %}Home Page{% endblock %} 
 {% block content%}
-<div class="landing-page">
-  <div class="listen-title">LISTEN!</div>
-  <div class="catchphrase-description" >
-    <div class="Catchphrase">
-      <div class="catchphrase-fill"></div>
-      <div class="catchphrase-text">Navigate your sonic odyssey</div>
+<div class="container">
+    <div class="row landing-page">
+      <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 listen-title">LISTEN!</div>
+      </div>
+      <div class="row catchphrase-description" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 Catchphrase">
+          <div class="catchphrase-fill"></div>
+          <div class="catchphrase-text">Navigate your sonic odyssey</div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 description-text">
+            <span class = "description-text-listen">LISTEN!</span>
+            <span class = "description-text-block">is your ultimate platform for interactive music sharing, allowing you to connect with your college mates.
+            <br/>Dive into a vibrant community where you can express your music preferences, discover new tracks, and create unforgettable musical experiences together!"</span>
+        </div>
+      </div>
     </div>
-    <div class="description-text">
-        <span class = "description-text-listen">LISTEN!</span>
-        <span class = "description-text-block">is your ultimate platform for interactive music sharing, allowing you to connect with your college mates.
-        <br/>Dive into a vibrant community where you can express your music preferences, discover new tracks, and create unforgettable musical experiences together!"</span>
-    </div>
-  </div>
 </div>
+
 {% endblock %}  
