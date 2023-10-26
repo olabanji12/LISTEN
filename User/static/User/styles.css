@@ -1,9 +1,7 @@
 body {
-    background-color: whitesmoke;
+    background-color: #1E1E1E;
 }
-.navbar-custom {
-    background-color: #006D5B;
-}
+
 .container a{
     font-family: 'Inter', sans-serif;
     font-size: 30px;
