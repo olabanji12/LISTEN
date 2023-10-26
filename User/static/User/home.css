@@ -1,76 +1,59 @@
-.landing-page {
-    width: 1280px; 
-    height: 832px; 
-    position: relative; 
-    background: #1E1E1E; 
-    border-radius: 50px; 
-    overflow: hidden;
+
+.container-fluid{
+    height: 100vh; 
 }
 .listen-title{
-    width: 373px; 
-    height: 124px; 
-    left: 455px; 
-    top: 53px; 
-    position: absolute; 
-    text-align: center; 
-    color: white; 
+    margin-top: 5%;
+}
+.listen-title h1{
     font-size: 96px; 
     font-family: Outfit; 
     font-weight: 800; 
-    word-wrap: break-word;
 }
-.catchphrase-description{
-    left: 52px; 
-    top: 226px; 
-    position: absolute; 
+.phrase-description{
+    margin-top: 5%;
+}
+.phrase{
+    display: flex; 
     justify-content: center; 
     align-items: center; 
-    gap: 100px; 
-    display: inline-flex;
 }
-.Catchphrase{
-    width: 528px; 
-    height: 328px; 
-    position: relative
+.text-fill{
+    background-color: #104039;
+    width: 90%;
+    height: 90%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    border-radius: 64px 96px 128px 32px;
 }
-.catchphrase-fill{
-    width: 528px; 
-    height: 328px; 
-    left: 0px; 
-    top: 0px; 
-    position: absolute; 
-    opacity: 0.40; 
-    background: #006D5B; 
-    border-radius: 50px;
-}
-.catchphrase-text{
-    width: 438px; 
-    height: 168px; 
-    left: 31px; 
-    top: 82px; 
-    position: absolute; 
-    color: white; 
+.phrase h2{
     font-size: 64px; 
     font-family: Inter; 
     font-weight: 400; 
     text-transform: capitalize; 
-    word-wrap: break-word;
+    text-align: left;
+    width: 450px;
+    color: #FFFFFF;
 }
-.description-text{
-    width: 560px; 
-    height: 320px;
+.description{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
-.description-text-listen{
-    color: #036354; 
-    font-size: 30px; 
-    font-family: Inter; 
-    font-weight: 800; 
-    word-wrap: break-word;
-}
-.description-text-block{
-    color: white; 
+.description h2{
     font-size: 30px; 
     font-family: Inter; 
     font-weight: 300; 
     word-wrap: break-word;
+    margin-left: 5%;
+}
+.description-text {
+    color: #FFFFFF;
+}
+.description-text span{
+    color: #036354; 
+    font-size: 30px; 
+    font-family: Inter; 
+    font-weight: 800; 
 }
