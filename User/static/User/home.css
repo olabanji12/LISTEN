@@ -12,16 +12,18 @@
 }
 .phrase-description{
     margin-top: 5%;
+    
 }
 .phrase{
     display: flex; 
     justify-content: center; 
     align-items: center; 
+    padding-bottom: 40px;
 }
 .text-fill{
     background-color: #104039;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     display: flex; 
     justify-content: center; 
     align-items: center;
@@ -33,7 +35,7 @@
     font-weight: 400; 
     text-transform: capitalize; 
     text-align: left;
-    width: 450px;
+    width: 80%;
     color: #FFFFFF;
 }
 .description{
