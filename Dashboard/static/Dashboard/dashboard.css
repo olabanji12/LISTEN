@@ -1,11 +1,8 @@
-/* .list {
-    border: 2px solid red;
-
-} */
-
 .list-group-item {
     margin-bottom: 50px; /* Adjust this value as needed */
-    margin-left: 120px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 
 }
 .items{
@@ -14,7 +11,6 @@
     border-radius: 15px;
 
 }
-
 h1{
     font-family: 'Inter', sans-serif;
     font-size: 70px;
