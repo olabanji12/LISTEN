@@ -44,7 +44,7 @@ def get_user_display_id(request):
 
 def get_user_dashboard_data(request):
     user_tokens = get_user_tokens(request.session.session_key)
-    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=10, retries=10)
+    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=100, retries=10)
 
     # get user_id
     
