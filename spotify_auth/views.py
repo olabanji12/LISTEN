@@ -101,11 +101,8 @@ def spotify_callback(request):
         request.session.session_key, access_token, token_type, expires_in, refresh_token)
     
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
-    if UserProfile.objects.filter(user_id = get_user_display_id).exists:
-        return redirect('user_dashboard')
-    else:
-        get_user_dashboard_data(request)
-        return redirect('user_dashboard')
+    
+    return redirect('user_dashboard')
     # Redirect the user to another page or perform further actions
     # return redirect('user_dashboard')
 
