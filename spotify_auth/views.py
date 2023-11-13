@@ -1,4 +1,5 @@
 # Create your views here.
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings
@@ -17,7 +18,7 @@ def spotify_login(request):
     redirect_uri = settings.SPOTIPY_REDIRECT_URI
 
     # Define the desired Spotify scopes as a space-separated string
-    scope = 'user-read-private user-read-email playlist-modify-public user-top-read'
+    scope = 'user-read-private user-read-email playlist-modify-public user-top-read playlist-read-private'
 
     # Create the SpotifyOAuth object with credentials and scope
     sp_oauth = SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope)
@@ -77,19 +78,15 @@ def get_user_playlist(request):
     sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=100, retries=10)
     
     user_id = get_user_display_id(request)
-
     user_playlist = sp.current_user_playlists()
     
     for playlist in user_playlist['items']:
         playlist_name = playlist['name']
         playlist_url = playlist['external_urls']['spotify']
-        playlist_image = playlist['images']['url']
-
+        playlist_image = playlist['images'][0]['url']
         UserPlaylistInstance = UserPlaylist(user_id = user_id, name = playlist_name, image = playlist_image, url = playlist_url)
         UserPlaylistInstance.save()
-
-
-
+    return HttpResponse("Playlist data saved successfully.")
 
 def spotify_logout(request): 
     logout(request)  # Logs out the user
