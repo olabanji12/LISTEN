@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from .utils import update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens
 import spotipy
 from Dashboard.models import *
+from Friends.models import UserPlaylist
 
 
 def spotify_login(request):
@@ -70,6 +71,24 @@ def get_user_dashboard_data(request):
         UserTopArtistsInstance.save()
         UserTopTracksInstance = UserTopTracks(user_id = UserProfileInstance, track = track_name, image = track_image, rank = counter)
         UserTopTracksInstance.save()
+
+def get_user_playlist(request):
+    user_tokens = get_user_tokens(request.session.session_key)
+    sp = spotipy.Spotify(auth=user_tokens.access_token, requests_timeout=100, retries=10)
+    
+    user_id = get_user_display_id(request)
+
+    user_playlist = sp.current_user_playlists()
+    
+    for playlist in user_playlist['items']:
+        playlist_name = playlist['name']
+        playlist_url = playlist['external_urls']['spotify']
+        playlist_image = playlist['images']['url']
+
+        UserPlaylistInstance = UserPlaylist(user_id = user_id, name = playlist_name, image = playlist_image, url = playlist_url)
+        UserPlaylistInstance.save()
+
+
 
 
 def spotify_logout(request): 
