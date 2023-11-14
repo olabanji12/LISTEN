@@ -1,0 +1,30 @@
+{% extends 'User/base.html' %} 
+{% block title %}Playlist{% endblock %} 
+{% block content%}
+<br>
+<br>
+<div class="container">
+    <br>
+    <div class="row items">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 playlist-container">
+            <h1>PLAYLIST</h1>
+            <ol class="list">
+                {% for playlist_names, playlist_image, playlist_url in playlist_name_image_links %}
+                    <li class="list-group-item">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{playlist_image}}" class="card-img-top" style="height: 288px;">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{ forloop.counter }}. {{ playlist_names|slice:":20" }}
+                                        {% if playlist_names|length > 20 %}...{% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
