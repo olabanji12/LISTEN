@@ -8,10 +8,7 @@ def user_playlist(request):
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
     user_display_name = get_user_display_name(request)
 
-    if UserPlaylist.objects.filter(user_id = get_user_display_id).exists:
-        pass
-    else:
-        get_user_playlist(request)
+    get_user_playlist(request)
 
 
     playlist_records = UserPlaylist.objects.filter(user_id = user_id).all()
