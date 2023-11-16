@@ -9,7 +9,7 @@ from .utils import update_or_create_user_tokens, is_spotify_authenticated, get_u
 import spotipy
 from Dashboard.models import *
 from Friends.models import UserPlaylist
-
+from Friends.utils import generate_playlist_qrcode
 
 def spotify_login(request):
     # Define your Spotify client credentials
@@ -83,9 +83,11 @@ def get_user_playlist(request):
     for playlist in user_playlist['items']:
         playlist_name = playlist['name']
         playlist_url = playlist['external_urls']['spotify']
+        generate_playlist_qrcode(request, playlist_url)
         playlist_image = playlist['images'][0]['url']
-        UserPlaylistInstance = UserPlaylist(user_id = user_id, name = playlist_name, image = playlist_image, url = playlist_url)
-        UserPlaylistInstance.save()
+        if not UserPlaylist.objects.filter(user_id=user_id, name=playlist_name).exists():
+            UserPlaylistInstance = UserPlaylist(user_id = user_id, name = playlist_name, image = playlist_image, url = playlist_url)
+            UserPlaylistInstance.save()
     return HttpResponse("Playlist data saved successfully.")
 
 def spotify_logout(request): 
