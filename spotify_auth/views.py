@@ -83,7 +83,7 @@ def get_user_playlist(request):
     for playlist in user_playlist['items']:
         playlist_name = playlist['name']
         playlist_url = playlist['external_urls']['spotify']
-        generate_playlist_qrcode(request, playlist_url)
+        generate_playlist_qrcode(request, playlist_url, user_id, playlist_name)
         playlist_image = playlist['images'][0]['url']
         if not UserPlaylist.objects.filter(user_id=user_id, name=playlist_name).exists():
             UserPlaylistInstance = UserPlaylist(user_id = user_id, name = playlist_name, image = playlist_image, url = playlist_url)
