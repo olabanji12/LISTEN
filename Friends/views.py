@@ -18,15 +18,20 @@ def user_playlist(request):
     playlist_image = []
     playlist_url = []
     playlist_qrcode = []
+    
 
     for records in playlist_records:
         playlist_names.append(records.name)
         playlist_image.append(records.image)
         playlist_url.append(records.url)
+        print(records.name, records.url)
     
-    for qrcode in playlist_qrcodes:
-        playlist_qrcode.append(qrcode.image)
-        print(qrcode.image)
+    for urls in playlist_url:
+        qrcode_object = PlaylistQRCode.objects.filter(url = urls).all()
+        for obj in qrcode_object:
+            playlist_qrcode.append(obj.image)
+            print(obj.image)
+
 
     playlist_name_image_links = zip(playlist_names, playlist_image, playlist_url, playlist_qrcode)
     context = {
