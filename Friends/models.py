@@ -9,3 +9,8 @@ class UserPlaylist(models.Model):
 
     class Meta:
         unique_together = ('user_id', 'name')
+
+class PlaylistQRCode(models.Model):
+    url = models.URLField()
+    user_id = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='media/')
