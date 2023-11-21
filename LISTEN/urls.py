@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from LISTEN import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -27,4 +29,4 @@ urlpatterns = [
     path('dashboard/', include('Dashboard.urls')),
     path('playlist/', include('Friends.urls')),
     
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
