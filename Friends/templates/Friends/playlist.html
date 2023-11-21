@@ -9,7 +9,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 playlist-container">
             <h1>PLAYLIST</h1>
             <ol class="list">
-                {% for playlist_names, playlist_image, playlist_url in playlist_name_image_links %}
+                {% for playlist_names, playlist_image, playlist_url, playlist_qrcode in playlist_name_image_links %}
                     <li class="list-group-item">
                             <div class="card" style="width: 18rem;">
                                 <img src="{{playlist_image}}" class="card-img-top" style="height: 288px;">
@@ -18,13 +18,32 @@
                                         {{ forloop.counter }}. {{ playlist_names|slice:":20" }}
                                         {% if playlist_names|length > 20 %}...{% endif %}
                                     </p>
-                                    <a href="{{playlist_url}}" target="_blank" class="btn btn-primary  active" role="button" aria-pressed="true">Share</a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#shareplaylist{{ forloop.counter }}">
+                                        Share
+                                    </button>
                                 </div>
                             </div>
                     </li>
+                    <div class="modal fade" id="shareplaylist{{ forloop.counter }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Scan the QR Code</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                     <p>Constructed URL: {{ MEDIA_URL }}{{ playlist_qrcode }}</p>
+                                    <img src="{{ MEDIA_URL }}{{ playlist_qrcode }}" alt="QR Code Image">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </ol>
-        </div>
+        </div> 
     </div>
 </div>
 
