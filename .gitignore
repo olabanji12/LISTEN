@@ -4,3 +4,5 @@ Friends/migrations
 Dashboard/migrations
 media/
 *.pyc
+.env
+
