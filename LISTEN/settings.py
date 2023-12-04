@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%n!@x(1uy8w=@%@+vuc3&zgc909)g&y0-p%e#_wdz3&9j!f8c5"
+SECRET_KEY = "@Lp3xQr2#9oFg6hPtYxNwMzLs1vBc7Aj8Kd0RiUu5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -140,7 +140,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # LOGIN_REDIRECT_URL = '/home'
 # LOGOUT_REDIRECT_URL = '/login'
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-SPOTIPY_CLIENT_ID='f29d5e3d85cd41b4a8c7fb4efd38337b'
-SPOTIPY_CLIENT_SECRET='3c806068ef3d4f4da8f30e0961c6d5cf'
-SPOTIPY_REDIRECT_URI = 'http://localhost:8000/spotify/callback'
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+SECURE_SSL_REDIRECT = True
+SECURE_REFERRER_POLICY = "strict-origin"
+SECURE_BROWSER_XSS_FILTER =  True
