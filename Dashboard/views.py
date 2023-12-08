@@ -11,10 +11,9 @@ def user_dashboard(request):
     is_authenticated  = is_spotify_authenticated(request.session.session_key)
     user_display_name = get_user_display_name(request)
     user_id = get_user_display_id(request)
-    if UserProfile.objects.filter(user_id = get_user_display_id).exists:
-        pass
-    else:
-        get_user_dashboard_data(request)
+
+   
+    get_user_dashboard_data(request)
 
 
     track_records = UserTopTracks.objects.filter(user_id = user_id).order_by('rank').all()
