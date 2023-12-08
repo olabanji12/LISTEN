@@ -68,10 +68,12 @@ def get_user_dashboard_data(request):
         artist_image = artist['images'][1]['url']
         track_name = track['name']
         track_image = track['album']['images'][1]['url']
-        UserTopArtistsInstance = UserTopArtists(user_id = UserProfileInstance, artist = artist_name, image = artist_image, rank = counter)
-        UserTopArtistsInstance.save()
-        UserTopTracksInstance = UserTopTracks(user_id = UserProfileInstance, track = track_name, image = track_image, rank = counter)
-        UserTopTracksInstance.save()
+        if not UserTopArtists.objects.filter(user_id = user_id, artist = artist_name).exists():
+            UserTopArtistsInstance = UserTopArtists(user_id = UserProfileInstance, artist = artist_name, image = artist_image, rank = counter)
+            UserTopArtistsInstance.save()
+        if not UserTopTracks.objects.filter(user_id = user_id, track = track_name).exists():
+            UserTopTracksInstance = UserTopTracks(user_id = UserProfileInstance, track = track_name, image = track_image, rank = counter)
+            UserTopTracksInstance.save()
 
 def get_user_playlist(request):
     user_tokens = get_user_tokens(request.session.session_key)
