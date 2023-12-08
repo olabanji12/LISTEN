@@ -27,8 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-APP_NAME = os.environ.get("LISTEN!")
-ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev"]
+# APP_NAME = os.environ.get("LISTEN!")
+ALLOWED_HOSTS = [".vercel.app"]
 
 SPOTIPY_CLIENT_ID = config('CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = config('CLIENT_SECRET')
