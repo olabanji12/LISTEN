@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')   
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # APP_NAME = os.environ.get("LISTEN!")
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = []
 
 SPOTIPY_CLIENT_ID = config('CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = config('CLIENT_SECRET')
@@ -99,6 +100,7 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+DATABASES["default"] = dj_database_url.parse("postgres://listen_db_user:M8KENm6WwmWsGKnwe2BKcSdtlEG37jWU@dpg-clssuh8cmk4c73cem7lg-a.oregon-postgres.render.com/listen_db")
 
 
 # Password validation
@@ -145,13 +147,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # LOGIN_REDIRECT_URL = '/home'
 # LOGOUT_REDIRECT_URL = '/login'
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
 
-SECURE_SSL_REDIRECT = True
-SECURE_REFERRER_POLICY = "strict-origin"
-SECURE_BROWSER_XSS_FILTER =  True
+# SECURE_SSL_REDIRECT = True
+# SECURE_REFERRER_POLICY = "strict-origin"
+# SECURE_BROWSER_XSS_FILTER =  True
