@@ -5,4 +5,5 @@ Dashboard/migrations
 media/
 *.pyc
 .env
+spotify_auth/migrations
 
