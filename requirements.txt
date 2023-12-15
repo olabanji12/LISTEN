@@ -5,5 +5,5 @@ gunicorn==21.2.0
 psycopg2-binary==2.9.9
 qrcode==7.4.2
 spotipy==2.23.0
-urllib3 @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_e9usuw__8i/croot/urllib3_1686166332689/work
+
 
