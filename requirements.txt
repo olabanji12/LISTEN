@@ -2,7 +2,6 @@ crispy-bootstrap5==0.7
 Django==4.2.4
 django-crispy-forms==2.0
 gunicorn==21.2.0
-pathlib @ file:///Users/ktietz/demo/mc3/conda-bld/pathlib_1629713961906/work
 psycopg2-binary==2.9.9
 qrcode==7.4.2
 spotipy==2.23.0
