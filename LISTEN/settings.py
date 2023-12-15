@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['listen-q9h9.onrender.com']
 
 SPOTIPY_CLIENT_ID = config('CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = config('CLIENT_SECRET')
