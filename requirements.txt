@@ -6,4 +6,5 @@ psycopg2-binary==2.9.9
 qrcode==7.4.2
 spotipy==2.23.0
 python-decouple==3.1
+dj_database_url==0.5.0
 
