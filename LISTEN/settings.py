@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')   
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
-# APP_NAME = os.environ.get("LISTEN!")
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS')
 
 SPOTIPY_CLIENT_ID = config('CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = config('CLIENT_SECRET')
@@ -100,7 +100,8 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-DATABASES["default"] = dj_database_url.parse("postgres://listen_db_user:M8KENm6WwmWsGKnwe2BKcSdtlEG37jWU@dpg-clssuh8cmk4c73cem7lg-a.oregon-postgres.render.com/listen_db")
+database_url = config('DATABASE_URL')
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
