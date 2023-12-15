@@ -101,7 +101,7 @@ DATABASES = {
     }
 }
 database_url = config('DATABASE_URL')
-DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES["default"] = dj_database_url.parse('postgres://listen_db_user:M8KENm6WwmWsGKnwe2BKcSdtlEG37jWU@dpg-clssuh8cmk4c73cem7lg-a.oregon-postgres.render.com/listen_db')
 
 
 # Password validation
