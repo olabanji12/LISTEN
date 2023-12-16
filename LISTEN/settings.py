@@ -38,6 +38,7 @@ SPOTIPY_REDIRECT_URI = config('REDIRECT_URI')
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -58,6 +59,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
