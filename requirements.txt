@@ -7,4 +7,5 @@ qrcode==7.4.2
 spotipy==2.23.0
 python-decouple==3.1
 dj_database_url==2.1.0
+whitenoise==6.6.0
 
